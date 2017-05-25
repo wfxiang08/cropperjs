@@ -1,4 +1,6 @@
 # Project
+docs/serve*
+.idea
 /_*
 *.map
 bower_components

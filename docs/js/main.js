@@ -15,44 +15,39 @@ window.onload = function () {
   var dataRotate = document.getElementById('dataRotate');
   var dataScaleX = document.getElementById('dataScaleX');
   var dataScaleY = document.getElementById('dataScaleY');
-  var options = {
-        aspectRatio: 16 / 9,
-        preview: '.img-preview',
-        ready: function (e) {
-          console.log(e.type);
-        },
-        cropstart: function (e) {
-          console.log(e.type, e.detail.action);
-        },
-        cropmove: function (e) {
-          console.log(e.type, e.detail.action);
-        },
-        cropend: function (e) {
-          console.log(e.type, e.detail.action);
-        },
-        crop: function (e) {
-          var data = e.detail;
 
-          console.log(e.type);
-          dataX.value = Math.round(data.x);
-          dataY.value = Math.round(data.y);
-          dataHeight.value = Math.round(data.height);
-          dataWidth.value = Math.round(data.width);
-          dataRotate.value = typeof data.rotate !== 'undefined' ? data.rotate : '';
-          dataScaleX.value = typeof data.scaleX !== 'undefined' ? data.scaleX : '';
-          dataScaleY.value = typeof data.scaleY !== 'undefined' ? data.scaleY : '';
-        },
-        zoom: function (e) {
-          console.log(e.type, e.detail.ratio);
-        }
-      };
+  var options = {
+    aspectRatio: 16 / 9,
+    zoomable: true,
+    preview: '.img-preview',
+    ready: function (e) {
+      console.log(e.type);
+    },
+    cropstart: function (e) {
+      console.log(e.type, e.detail.action);
+    },
+    cropmove: function (e) {
+      console.log(e.type, e.detail.action);
+    },
+    cropend: function (e) {
+      console.log(e.type, e.detail.action);
+    },
+    crop: function (e) {
+      var data = e.detail;
+
+      console.log(e.type);
+      dataX.value = Math.round(data.x);
+      dataY.value = Math.round(data.y);
+      dataHeight.value = Math.round(data.height);
+      dataWidth.value = Math.round(data.width);
+      dataRotate.value = typeof data.rotate !== 'undefined' ? data.rotate : '';
+      dataScaleX.value = typeof data.scaleX !== 'undefined' ? data.scaleX : '';
+      dataScaleY.value = typeof data.scaleY !== 'undefined' ? data.scaleY : '';
+    }
+  };
   var cropper = new Cropper(image, options);
   var originalImageURL = image.src;
   var uploadedImageURL;
-
-  // Tooltip
-  $('[data-toggle="tooltip"]').tooltip();
-
 
   // Buttons
   if (!document.createElement('canvas').getContext) {
